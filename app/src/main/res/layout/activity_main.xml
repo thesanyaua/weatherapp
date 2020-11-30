@@ -24,23 +24,24 @@
         android:padding="10dp">
 
 
-        <TextView
-            android:id="@+id/kiev"
+        <EditText
+            android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ems="10"
             android:gravity="center"
-            android:text="Запорожье"
-            android:textColor="#fff"
+            android:inputType="textPersonName"
+            android:text="Киев"
             android:textSize="40dp" />
 
         <TextView
             android:id="@+id/descText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Температура:"
-            android:textColor="#fff"
-            android:textSize="40dp"
-            android:gravity="center"/>
+            android:textColor="#000"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/tempText"
@@ -48,8 +49,8 @@
             android:layout_height="92dp"
             android:gravity="center"
             android:text="____"
-            android:textColor="#fff"
-            android:textSize="50dp" />
+            android:textColor="#000"
+            android:textSize="30dp" />
 
 
     </LinearLayout>

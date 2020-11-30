@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button search1;
-    TextView tempText , kiev ;
+    TextView tempText;
+    EditText  city ;
 
 
     @Override
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         search1 = findViewById(R.id.search1);
         tempText = findViewById(R.id.tempText);
-        kiev = findViewById(R.id.kiev);
+        city = findViewById(R.id.city);
 
 
         search1.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-             //   getWeatherData(textField.getText().toString().trim());
-                  getWeatherData(kiev.getText().toString());
+
+
+                getWeatherData(city.getText().toString());
 
             }
         });
