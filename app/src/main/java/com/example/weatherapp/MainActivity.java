@@ -3,11 +3,9 @@ package com.example.weatherapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weatherapp.Retrofit.ApiClient;
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button search1;
-    TextView tempText;
+    TextView tempText, tmin, tmax, pressure;
     EditText  city ;
 
 
@@ -31,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         search1 = findViewById(R.id.search1);
         tempText = findViewById(R.id.tempText);
+        tmin = findViewById(R.id.tmin);
+        tmax = findViewById(R.id.tmax);
         city = findViewById(R.id.city);
 
 
@@ -40,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
                 getWeatherData(city.getText().toString());
+
 
             }
         });
@@ -60,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Example> call, Response<Example> response) {
 
                 tempText.setText(response.body().getMain().getTemp()+" C");
+                tmin.setText("Минимум "+ response.body().getMain().getTemp_min()+ "С");
+                tmax.setText("Максимум " + response.body().getMain().getTemp_max()+ "С");
             }
 
             @Override
