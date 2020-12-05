@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Date: 12/5/20
  * Time: 9:05 PM
  */
-public class DayWeatherForecast {
+public class DayWeatherForecast implements BaseResponseObject {
 
     @SerializedName("temp")
     private double temp;

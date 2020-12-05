@@ -8,91 +8,6 @@
     android:orientation="vertical"
     android:background="@drawable/background">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="646dp"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-
-        <EditText
-            android:id="@+id/city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="textPersonName"
-            android:textColor="#FFF"
-            android:text="Киев"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/descText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Температура:"
-            android:textColor="#FFF"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/tempText"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/aldrich"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="#FFF"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/pressure"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="Температура на сегодня:"
-            android:textColor="#FFF"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/tmin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/tmax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:textSize="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Прогноз на 5 дней:"
-            android:textColor="#FFF"
-            android:textSize="20dp"
-            android:drawablePadding="50dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="396dp"
-            android:layout_height="match_parent"
-            android:textColor="#FFF"/>
-
-
-    </LinearLayout>
-
-
-
     <Button
         android:id="@+id/search1"
         android:layout_width="match_parent"
@@ -101,7 +16,11 @@
         android:layout_marginTop="0dp"
         android:text="Run" />
 
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/search1"
+        android:textColor="#FFF"/>
 
 </RelativeLayout>

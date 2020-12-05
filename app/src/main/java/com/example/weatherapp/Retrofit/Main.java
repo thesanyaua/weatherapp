@@ -2,7 +2,7 @@ package com.example.weatherapp.Retrofit;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Main {
+public class Main implements BaseResponseObject {
 
 
     @SerializedName("temp")
