@@ -27,6 +27,6 @@ class MyViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(DayWeatherForecast item) {
-        title.setText(String.valueOf(item.getTemp()));
+        title.setText(String.valueOf(item.getMain().getTemp()));
     }
 }

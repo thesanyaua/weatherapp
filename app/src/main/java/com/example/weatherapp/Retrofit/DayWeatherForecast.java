@@ -9,14 +9,26 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DayWeatherForecast implements BaseResponseObject {
 
-    @SerializedName("temp")
-    private double temp;
+    @SerializedName("main")
+    private Main main;
 
-    public double getTemp() {
-        return temp;
+    @SerializedName("dt")
+    private double dt;
+
+    public Main getMain() {
+        return main;
     }
 
-    public void setTemp(double temp) {
-        this.temp = temp;
+    public void setMain(Main main) {
+        this.main = main;
     }
+
+    public double getDt() {
+        return dt;
+    }
+
+    public void setDt(double dt) {
+        this.dt = dt;
+    }
+
 }
