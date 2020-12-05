@@ -8,11 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weatherapp.Recycler.MyAdapter;
-import com.example.weatherapp.Recycler.MyObject;
 import com.example.weatherapp.Retrofit.ApiClient;
 import com.example.weatherapp.Retrofit.ApiInterface;
+import com.example.weatherapp.Retrofit.DayWeatherForecast;
 import com.example.weatherapp.Retrofit.Example;
 import com.example.weatherapp.sss.Utils;
+
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,11 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         //запуск RecyclerView для прогноза
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MyAdapter myAdapter = new MyAdapter();
-        myAdapter.setItems(MyObject.generateObjects(5));
-        mRecyclerView.setAdapter(myAdapter);
-
-
 
         search1 = findViewById(R.id.search1);
         tempText = findViewById(R.id.tempText);
@@ -49,20 +46,19 @@ public class MainActivity extends AppCompatActivity {
         tmax = findViewById(R.id.tmax);
         city = findViewById(R.id.city);
 
+        getWeatherData(city.getText().toString());
+        getForecastData(city.getText().toString());
 
         search1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 getWeatherData(city.getText().toString());
-
-
-
+                getForecastData(city.getText().toString());
             }
         });
     }
 
-    private void getWeatherData(String name){
+    private void getForecastData(String name) {
 
        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -71,12 +67,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
-
-               tempText.setText((response.body().getMain().getTemp())+" C˚");
-                tmin.setText("Минимум "+ response.body().getMain().getTemp_min()+ " C˚");
-                tmax.setText("Максимум " + response.body().getMain().getTemp_max()+ " C˚");
-
-
+                setData(response.body().getDayWeatherForecast());
             }
 
             @Override
@@ -86,5 +77,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getWeatherData(String name) {
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<Example> call = apiInterface.getWeatherData(name);
+
+        call.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                tempText.setText((response.body().getMain().getTemp()) + " C˚");
+                tmin.setText("Минимум " + response.body().getMain().getTemp_min() + " C˚");
+                tmax.setText("Максимум " + response.body().getMain().getTemp_max() + " C˚");
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                Toast.makeText(MainActivity.this, call.toString(), Toast.LENGTH_LONG).show();
+                Utils.log(call.toString());
+            }
+        });
+
+    }
+
+    private void setData(List<DayWeatherForecast> data) {
+        MyAdapter myAdapter = new MyAdapter();
+        myAdapter.setItems(data);
+        mRecyclerView.setAdapter(myAdapter);
     }
 }

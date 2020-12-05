@@ -3,10 +3,11 @@ package com.example.weatherapp.Recycler;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.weatherapp.R;
+import com.example.weatherapp.Retrofit.DayWeatherForecast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.weatherapp.R;
 
 /**
  * Created by Aleksandr Aleksandrov
@@ -25,9 +26,7 @@ class MyViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(MyObject item) {
-        title.setText(item.getTitle());
-
-
+    public void bind(DayWeatherForecast item) {
+        title.setText(String.valueOf(item.getTemp()));
     }
 }

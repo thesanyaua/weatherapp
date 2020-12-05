@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.Retrofit.DayWeatherForecast;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    private List<MyObject> items = null;
+    private List<DayWeatherForecast> items = null;
 
     @NonNull
     // Создаем новые ViewHolder
@@ -42,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         }
     }
 
-    public void setItems(List<MyObject> items) {
+    public void setItems(List<DayWeatherForecast> items) {
         this.items = items;
     }
 }
