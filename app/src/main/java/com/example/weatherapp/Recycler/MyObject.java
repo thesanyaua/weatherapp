@@ -1,0 +1,44 @@
+package com.example.weatherapp.Recycler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Aleksandr Aleksandrov
+ * Date: 11/28/20
+ * Time: 7:45 PM
+ */
+public class MyObject {
+
+    private String title = null;
+    private String subject = null;
+    private String url = null;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+
+
+    public static List<MyObject> generateObjects(int size) {
+        List<MyObject> items = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            MyObject item = new MyObject();
+
+            item.title = "Title number " + i;
+
+
+            items.add(item);
+
+        }
+
+        return items;
+    }
+
+}

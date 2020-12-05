@@ -1,6 +1,8 @@
 package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.weatherapp.Recycler.MyAdapter;
+import com.example.weatherapp.Recycler.MyObject;
 import com.example.weatherapp.Retrofit.ApiClient;
 import com.example.weatherapp.Retrofit.ApiInterface;
 import com.example.weatherapp.Retrofit.Example;
+
+import java.text.DecimalFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,16 +24,24 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    Double  output;
     Button search1;
-    TextView tempText, tmin, tmax, pressure;
+    TextView tempText, tmin, tmax;
     EditText  city ;
 
-
+    private RecyclerView mRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mRecyclerView = findViewById(R.id.recyclerView);
+
+        //запуск RecyclerView для прогноза
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        MyAdapter myAdapter = new MyAdapter();
+        myAdapter.setItems(MyObject.generateObjects(5));
+        mRecyclerView.setAdapter(myAdapter);
+
 
 
         search1 = findViewById(R.id.search1);
@@ -44,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 getWeatherData(city.getText().toString());
 
 
+
             }
         });
     }
@@ -58,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
 
-                tempText.setText(response.body().getMain().getTemp()+" C");
-                tmin.setText("Минимум "+ response.body().getMain().getTemp_min()+ "С");
-                tmax.setText("Максимум " + response.body().getMain().getTemp_max()+ "С");
+               tempText.setText((response.body().getMain().getTemp())+" C˚");
+                tmin.setText("Минимум "+ response.body().getMain().getTemp_min()+ " C˚");
+                tmax.setText("Максимум " + response.body().getMain().getTemp_max()+ " C˚");
+
+
             }
 
             @Override

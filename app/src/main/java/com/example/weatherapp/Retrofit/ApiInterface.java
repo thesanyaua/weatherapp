@@ -11,4 +11,6 @@ public interface ApiInterface {
     Call<Example> getWeatherData(@Query("q") String name);
 
 
+
+
 }
