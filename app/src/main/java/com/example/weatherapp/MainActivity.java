@@ -1,23 +1,22 @@
 package com.example.weatherapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weatherapp.Recycler.MyAdapter;
 import com.example.weatherapp.Recycler.MyObject;
 import com.example.weatherapp.Retrofit.ApiClient;
 import com.example.weatherapp.Retrofit.ApiInterface;
 import com.example.weatherapp.Retrofit.Example;
+import com.example.weatherapp.sss.Utils;
 
-import java.text.DecimalFormat;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<Example> call = apiInterface.getWeatherData(name);
+        Call<Example> call = apiInterface.getForecastData(name);
 
         call.enqueue(new Callback<Example>() {
             @Override
@@ -82,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Example> call, Throwable t) {
-
+                Toast.makeText(MainActivity.this, call.toString(), Toast.LENGTH_LONG).show();
+                Utils.log(call.toString());
             }
         });
 
