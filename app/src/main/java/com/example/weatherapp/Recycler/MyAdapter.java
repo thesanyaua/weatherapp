@@ -28,8 +28,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 0) {
             return new MainDataViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_data, parent, false));
-        } else {
+        } else if (viewType == 1) {
             return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.my_item, parent, false));
+        } else {
+            return new TimeViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_time, parent, false));
         }
     }
     // Для присвоения значений новым ViewHolder
@@ -37,8 +39,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (items.get(position) instanceof Main) {
             ((MainDataViewHolder) holder).onBind((Main) items.get(position));
-        } else {
+        } else if (items.get(position) instanceof DayWeatherForecast) {
             ((MyViewHolder) holder).bind((DayWeatherForecast) items.get(position));
+        } else {
+            ((TimeViewHolder) holder).bind(items.get(position));
         }
     }
 
@@ -46,8 +50,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemViewType(int position) {
         if (items.get(position) instanceof Main) {
             return 0;
-        } else {
+        } else if (items.get(position) instanceof DayWeatherForecast) {
             return 1;
+        } else {
+            return 2;
         }
     }
 

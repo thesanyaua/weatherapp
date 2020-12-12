@@ -9,8 +9,10 @@ import com.example.weatherapp.Recycler.MyAdapter;
 import com.example.weatherapp.Retrofit.ApiClient;
 import com.example.weatherapp.Retrofit.ApiInterface;
 import com.example.weatherapp.Retrofit.BaseResponseObject;
+import com.example.weatherapp.Retrofit.DayWeatherForecast;
 import com.example.weatherapp.Retrofit.Example;
 import com.example.weatherapp.Retrofit.Main;
+import com.example.weatherapp.Retrofit.MyDate;
 import com.example.weatherapp.sss.Utils;
 
 import java.util.ArrayList;
@@ -64,7 +66,17 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Example> call, Response<Example> response) {
                 List<BaseResponseObject> list = new ArrayList<>();
                 list.add(mMain);
-                list.addAll(response.body().getDayWeatherForecast());
+
+                List<DayWeatherForecast> timeArray = response.body().getDayWeatherForecast();
+                for (int i = 0; i < timeArray.size(); i++) {
+
+                    MyDate myDate = new MyDate();
+                    myDate.setDt(timeArray.get(i).getDt());
+                    list.add(myDate);
+
+                    list.add(timeArray.get(i));
+                }
+
                 setData(list);
             }
 
