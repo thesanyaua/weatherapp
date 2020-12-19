@@ -7,13 +7,13 @@ package com.example.weatherapp.Retrofit;
  */
 public class MyDate implements BaseResponseObject {
 
-    private double dt;
+    private long dt;
 
-    public double getDt() {
+    public long getDt() {
         return dt;
     }
 
-    public void setDt(double dt) {
+    public void setDt(long dt) {
         this.dt = dt;
     }
 }

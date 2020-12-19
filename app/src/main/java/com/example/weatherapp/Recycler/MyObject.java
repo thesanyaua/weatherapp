@@ -11,16 +11,18 @@ import java.util.List;
 public class MyObject {
 
     private String title = null;
-    private String subject = null;
+    private String data1 = null;
     private String url = null;
 
     public String getTitle() {
         return title;
     }
+    public String getData1() { return data1; }
 
     public void setTitle(String title) {
         this.title = title;
     }
+    public void setData1(String data1) {this.data1 = data1;}
 
 
 
@@ -32,6 +34,7 @@ public class MyObject {
             MyObject item = new MyObject();
 
             item.title = "Title number " + i;
+            item.data1 = "Title number " + i;
 
 
             items.add(item);

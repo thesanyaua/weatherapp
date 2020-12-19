@@ -10,6 +10,9 @@ import com.example.weatherapp.Retrofit.MyDate;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Aleksandr Aleksandrov
  * Date: 12/12/20
@@ -27,8 +30,9 @@ class TimeViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(BaseResponseObject item) {
         MyDate myDate = (MyDate) item;
+        String transformedDate = new SimpleDateFormat("HH:mm  dd MMM yyyy").format(new Date(myDate.getDt()));
+        timeViewHolder.setText(transformedDate);
 
-        timeViewHolder.setText(String.valueOf(myDate.getDt()));
     }
 
 }

@@ -15,18 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
  * Date: 12/5/20
  * Time: 9:50 PM
  */
-class MainDataViewHolder extends RecyclerView.ViewHolder {
+public class MainDataViewHolder extends RecyclerView.ViewHolder {
+
+
 
     private TextView tempText, tmin, tmax;
     private EditText city ;
 
-    public MainDataViewHolder(@NonNull View itemView) {
+    public  MainDataViewHolder(@NonNull View itemView) {
         super(itemView);
 
         tempText = itemView.findViewById(R.id.tempText);
         tmin = itemView.findViewById(R.id.tmin);
         tmax = itemView.findViewById(R.id.tmax);
         city = itemView.findViewById(R.id.city);
+
+
     }
 
     public void onBind(Main item) {

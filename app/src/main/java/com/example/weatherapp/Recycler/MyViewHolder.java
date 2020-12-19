@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 class MyViewHolder extends RecyclerView.ViewHolder {
 
-    private final TextView title;
+    private final TextView title, data1;
+
    // private final TextView summary;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
 
+        data1 = itemView.findViewById(R.id.titleDataView);
         title = itemView.findViewById(R.id.titleTextView);
 
     }

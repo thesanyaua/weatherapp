@@ -10,17 +10,6 @@
     >
 
 
-    <EditText
-        android:id="@+id/city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:text="Киев"
-        android:textColor="#FFF"
-        android:textSize="40dp"
-        />
 
     <TextView
         android:id="@+id/descText"

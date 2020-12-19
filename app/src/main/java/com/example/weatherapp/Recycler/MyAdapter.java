@@ -22,6 +22,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<BaseResponseObject> items = null;
 
+
+
     @NonNull
     // Создаем новые ViewHolder
     @Override

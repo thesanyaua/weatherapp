@@ -1,10 +1,14 @@
 package com.example.weatherapp;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.weatherapp.Recycler.MainDataViewHolder;
 import com.example.weatherapp.Recycler.MyAdapter;
 import com.example.weatherapp.Retrofit.ApiClient;
 import com.example.weatherapp.Retrofit.ApiInterface;
@@ -29,10 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
     Double  output;
     Button search1;
+   //EditText city;
+
 
     private RecyclerView mRecyclerView;
 
     private Main mMain;
+
+    private String city;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +50,41 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
 
         search1 = findViewById(R.id.search1);
+      //  city = findViewById(R.id.city);
 
         //запуск RecyclerView для прогноза
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        getWeatherData("Киев");
-
-        search1.setOnClickListener(new View.OnClickListener() {
+        EditText tet = findViewById(R.id.city);
+        tet.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                getWeatherData("Киев");
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                    city = s.toString();
             }
         });
-    }
+
+
+       search1.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+
+                if(city != null) {
+                    getWeatherData(city);
+                }
+            }
+        });
+   }
 
     private void getForecastData(String name) {
 
@@ -99,7 +130,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 mMain = response.body().getMain();
-                getForecastData("Киев");
+                if (city != null) {
+                    getForecastData(city);
+                }
+
             }
 
             @Override

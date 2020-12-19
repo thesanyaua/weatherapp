@@ -13,7 +13,7 @@ public class DayWeatherForecast implements BaseResponseObject {
     private Main main;
 
     @SerializedName("dt")
-    private double dt;
+    private long dt;
 
     public Main getMain() {
         return main;
@@ -23,11 +23,11 @@ public class DayWeatherForecast implements BaseResponseObject {
         this.main = main;
     }
 
-    public double getDt() {
+    public long getDt() {
         return dt;
     }
 
-    public void setDt(double dt) {
+    public void setDt(long dt) {
         this.dt = dt;
     }
 
