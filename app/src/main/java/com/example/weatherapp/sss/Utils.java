@@ -9,10 +9,10 @@ import android.util.Log;
  */
 public class Utils {
 
-    private static final String TAG = "qweqwe";
+    private static final String DEBUG_TAG = "debug_tag";
 
     public static void log(String string) {
-        Log.d(TAG, string);
+        Log.d(DEBUG_TAG, string);
     }
 
 }
